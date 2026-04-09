@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<QuizService>();
 builder.Services.AddSingleton<HighscoreService>();
 
+// Add controllers (REQUIRED for MapControllers)
+builder.Services.AddControllers();
+
 // Allow frontend (React) to call API
 builder.Services.AddCors(options =>
 {
@@ -23,9 +26,15 @@ var app = builder.Build();
 
 app.UseCors();
 
+// Map controller endpoints
+app.MapControllers();
+
 // ----------------------
 //      ENDPOINTS
 // ----------------------
+
+// TESTING
+app.MapGet("/", () => "Hello World!");
 
 // Get 10 random questions
 app.MapGet("/questions", (QuizService quizService) =>
