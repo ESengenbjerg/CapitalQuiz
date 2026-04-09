@@ -1,6 +1,6 @@
 import styles from "./startpage.module.css";
 
-function App() {
+function StartPage() {
   // const [count, setCount] = useState(0);
 
   return (
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default StartPage;
