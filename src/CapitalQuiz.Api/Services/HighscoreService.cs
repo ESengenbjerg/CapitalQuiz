@@ -2,14 +2,17 @@ using CapitalQuiz.Api.Models;
 
 namespace CapitalQuiz.Api.Services;
 
+
 public class HighscoreService
 {
-    private readonly string _filePath = "highscores.txt";
-
+    private readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "highscore.txt");
     public List<HighscoreEntry> Load()
     {
+        
         if (!File.Exists(_filePath))
+        {
             return new List<HighscoreEntry>();
+        }
 
         return File.ReadAllLines(_filePath)
             .Select(line =>
