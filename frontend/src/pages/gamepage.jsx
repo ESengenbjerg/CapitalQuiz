@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./gamepage.module.css";
 
 function GamePage() {
@@ -8,6 +8,17 @@ function GamePage() {
   const [isFinished, setIsFinished] = useState(false);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const currentQuestion = questions[currentQuestionIndex];
+  const answerOptions = useMemo(
+    () =>
+      currentQuestion
+        ? shuffleAnswers([
+            currentQuestion.correctCapital,
+            ...currentQuestion.wrongCapitals,
+          ])
+        : [],
+    [currentQuestion],
+  );
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -96,37 +107,36 @@ function GamePage() {
     );
   }
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const answerOptions = shuffleAnswers([
-    currentQuestion.correctCapital,
-    ...currentQuestion.wrongCapitals,
-  ]);
-
   return (
     <main className={styles.container}>
-      <h1>Capital Quiz</h1>
+      <div className={styles.card}>
+        <div className={styles.headerRow}>
+          <span className={styles.badge}>Capital Quiz</span>
+          <p className={styles.questionCounter}>
+            Question {currentQuestionIndex + 1} of {questions.length}
+          </p>
+        </div>
 
-      <p className={styles.questionCounter}>
-        Question {currentQuestionIndex + 1} of {questions.length}
-      </p>
+        <h1 className={styles.title}>
+          What is the capital of {currentQuestion.country}?
+        </h1>
 
-      <h2 className={styles.question}>
-        What is the capital of {currentQuestion.country}?
-      </h2>
+        <div className={styles.answersContainer}>
+          {answerOptions.map((answer) => (
+            <button
+              key={answer}
+              className={styles.answerButton}
+              onClick={() => handleAnswerClick(answer)}
+            >
+              {answer}
+            </button>
+          ))}
+        </div>
 
-      <div className={styles.answersContainer}>
-        {answerOptions.map((answer) => (
-          <button
-            key={answer}
-            className={styles.answerButton}
-            onClick={() => handleAnswerClick(answer)}
-          >
-            {answer}
-          </button>
-        ))}
+        <div className={styles.footerRow}>
+          <p className={styles.score}>Score: {score}</p>
+        </div>
       </div>
-
-      <p className={styles.score}>Score: {score}</p>
     </main>
   );
 }
