@@ -1,13 +1,16 @@
+/* GLOBAL CONTAINER */
 .container {
-  height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
   display: grid;
   place-items: center;
   background: black;
   box-sizing: border-box;
   overflow: hidden;
+  padding-inline: 30px;
 }
 
+/* CARD */
 .card {
   --questioncard-red: #f94144;
   --questioncard-orange: #f8961e;
@@ -16,7 +19,7 @@
 
   width: min(860px, 100%);
   max-height: 100%;
-  padding: 32px;
+  padding: clamp(16px, 4vh, 32px);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
@@ -25,17 +28,19 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
   margin: 10px;
+  line-height: 1.2;
 }
 
+/* HEADER + FOOTER */
 .headerRow,
 .footerRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 18px;
+  margin-top: clamp(6px, 3vh, 18px);
 }
 
 .badgeLink {
@@ -70,10 +75,11 @@
   border-radius: 999px;
 }
 
+/* TITLE */
 .title {
-  margin: 20px 0 10px;
+  margin: clamp(20px, 8vh, 80px) 0 10px;
   color: #ffffff;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.4rem, 4vh, 3.4rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
   display: flex;
@@ -91,37 +97,41 @@
   font-weight: 600;
 }
 
+/* ANSWERS */
 .answersContainer {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  margin-top: 28px;
+  margin-top: clamp(10px, 4vh, 28px);
 }
 
 .answerButton {
-  min-height: 180px;
+  min-height: clamp(70px, 18vh, 180px);
   padding: 18px 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.4vh, 1.5rem);
   font-weight: 700;
   cursor: pointer;
   transition:
     transform 160ms ease,
     border-color 160ms ease,
-    filter 160ms ease;
+    filter 160ms ease,
+    background 200ms ease;
 }
 
-.answerButton:hover {
+.answerButton:hover:not(:disabled) {
   transform: translateY(-2px);
   border-color: rgba(255, 255, 255, 0.4);
   filter: brightness(1.08);
 }
 
-.answerButton:active {
-  transform: translateY(0);
+.answerButton:disabled:hover {
+  transform: none;
+  filter: none;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .answerButtonColor1 {
@@ -160,6 +170,13 @@
   );
 }
 
+.dimmed {
+  opacity: 0.55;
+  filter: grayscale(0.4);
+}
+
+/* SCORE */
+
 .score {
   margin: 0;
   font-size: 1rem;
@@ -167,9 +184,10 @@
   margin-left: auto;
 }
 
+/* FINISHED VIEW */
 .finishedText {
   margin-top: 10px;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 2vh, 1.1rem);
   color: rgba(248, 250, 252, 0.82);
 }
 
@@ -240,6 +258,11 @@
   opacity: 0.7;
 }
 
+.saveButton:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .saveMessage {
   margin: 0;
   color: #bbf7d0;
@@ -285,32 +308,9 @@
   transform: translateY(0);
 }
 
+/* MOBILE ADJUSTMENTS */
 @media (max-width: 640px) {
-  .container {
-    padding-inline: 30px;
-  }
-
-  .card {
-    width: 100%;
-    padding: 22px;
-    border-radius: 8px;
-    margin: 0;
-  }
-
-  .title {
-    margin: 80px 0 10px;
-  }
-
   .answersContainer {
     grid-template-columns: 1fr;
-  }
-
-  .answerButton {
-    font-size: 1.2rem;
-    min-height: 72px;
-  }
-
-  .restartButton {
-    margin-bottom: 80px;
   }
 }
