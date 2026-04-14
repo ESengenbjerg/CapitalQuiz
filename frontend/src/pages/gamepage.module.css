@@ -310,7 +310,49 @@
 
 /* MOBILE ADJUSTMENTS */
 @media (max-width: 640px) {
+  .container {
+    padding: 30px;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    max-height: calc(100dvh - 80px);
+    margin: 0;
+    padding: 16px;
+  }
+
+  .headerRow,
+  .footerRow {
+    margin-top: 8px;
+    gap: 10px;
+  }
+
+  .title {
+    margin: 100px 0 8px;
+    font-size: 1.6rem;
+    gap: 4px;
+  }
+
   .answersContainer {
     grid-template-columns: 1fr;
+    margin-top: 40px;
+    gap: 10px;
+  }
+
+  .answerButton {
+    min-height: 70px;
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+
+  .badge {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  .questionCounter,
+  .score {
+    font-size: 0.9rem;
   }
 }
