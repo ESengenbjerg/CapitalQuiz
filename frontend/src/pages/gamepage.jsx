@@ -223,10 +223,12 @@ function GamePage() {
         </h1>
 
         <div className={styles.answersContainer}>
-          {answerOptions.map((answer) => (
+          {answerOptions.map((answer, index) => (
             <button
               key={answer}
               className={`${styles.answerButton} ${
+                styles[`answerButtonColor${(index % 4) + 1}`]
+              } ${
                 selectedAnswer === answer
                   ? answer === currentQuestion.correctCapital
                     ? styles.answerButtonCorrect

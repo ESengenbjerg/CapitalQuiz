@@ -9,6 +9,11 @@
 }
 
 .card {
+  --questioncard-red: #f94144;
+  --questioncard-orange: #f8961e;
+  --questioncard-teal: #4d908e;
+  --questioncard-blue: #277da1;
+
   width: min(860px, 100%);
   max-height: 100%;
   padding: 32px;
@@ -43,7 +48,11 @@
   align-items: center;
   padding: 8px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #6b7280, #9ca3af);
+  background: linear-gradient(
+    135deg,
+    var(--questioncard-blue),
+    var(--questioncard-teal)
+  );
   color: white;
   font-size: 0.85rem;
   font-weight: 700;
@@ -90,40 +99,45 @@
 }
 
 .answerButton {
-  min-height: 86px;
+  min-height: 180px;
   padding: 18px 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0.05)
-  );
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer;
   transition:
     transform 160ms ease,
-    box-shadow 160ms ease,
     border-color 160ms ease,
-    background 160ms ease;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    filter 160ms ease;
 }
 
 .answerButton:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.08)
-  );
+  border-color: rgba(255, 255, 255, 0.4);
+  filter: brightness(1.08);
 }
 
 .answerButton:active {
   transform: translateY(0);
+}
+
+.answerButtonColor1 {
+  background: var(--questioncard-red);
+}
+
+.answerButtonColor2 {
+  background: var(--questioncard-orange);
+}
+
+.answerButtonColor3 {
+  background: var(--questioncard-teal);
+}
+
+.answerButtonColor4 {
+  background: var(--questioncard-blue);
 }
 
 .answerButtonCorrect,
@@ -198,7 +212,11 @@
   padding: 14px 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
-  background: linear-gradient(135deg, #6b7280, #9ca3af);
+  background: linear-gradient(
+    135deg,
+    var(--questioncard-orange),
+    var(--questioncard-red)
+  );
   color: #fff;
   font-size: 1rem;
   font-weight: 800;
@@ -240,7 +258,11 @@
   padding: 14px 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
-  background: linear-gradient(135deg, #6b7280, #9ca3af);
+  background: linear-gradient(
+    135deg,
+    var(--questioncard-teal),
+    var(--questioncard-blue)
+  );
   color: #fff;
   font-size: 1rem;
   font-weight: 800;
@@ -280,6 +302,7 @@
   }
 
   .answerButton {
+    font-size: 1.2rem;
     min-height: 72px;
   }
 }
