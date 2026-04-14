@@ -65,12 +65,13 @@ function StartPage() {
               ))}
             </ol>
           )}
+          {/* This page only needs to redirect to gamepage. Backend starts the actual game logic */}
+          <article className={styles.fixedContainer}>
+            <button className={styles.newGameButton} onClick={handleNewGame}>
+              New game
+            </button>
+          </article>
         </section>
-
-        {/* This page only needs to redirect to gamepage. Backend starts the actual game logic */}
-        <button className={styles.newGameButton} onClick={handleNewGame}>
-          New game
-        </button>
       </div>
     </main>
   );

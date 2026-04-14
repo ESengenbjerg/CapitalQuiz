@@ -85,6 +85,7 @@
 .highscoreSection {
   margin-top: 28px;
   text-align: left;
+  position: relative;
 }
 
 .highscoreSection h2 {
@@ -97,8 +98,9 @@
   margin: 16px 0 0;
   display: grid;
   gap: 10px;
-  max-height: none;
-  overflow: visible;
+  max-height: 40vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .highscoreList li {
@@ -123,6 +125,15 @@
   flex-shrink: 0;
 }
 
+.fixedContainer {
+  width: 100%;
+  height: 10vh;
+  border: 1px solid white;
+  position: fixed;
+  bottom: 10%;
+  left: 0;
+}
+
 @media (min-width: 641px) {
   .container {
     padding: 20px;
@@ -139,6 +150,7 @@
   .highscoreList {
     margin-top: 10px;
     gap: 8px;
+    max-height: 40vh;
   }
 
   .newGameButton {
