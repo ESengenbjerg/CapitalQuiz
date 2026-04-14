@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./gamepage.module.css";
 
 function GamePage() {
@@ -8,6 +9,35 @@ function GamePage() {
   const [isFinished, setIsFinished] = useState(false);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [playerName, setPlayerName] = useState("");
+  const [saveMessage, setSaveMessage] = useState("");
+  const [saveError, setSaveError] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  const fetchQuestions = useCallback(async () => {
+    setLoading(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("http://localhost:5026/questions");
+
+      if (!response.ok) {
+        throw new Error("Could not fetch questions");
+      }
+
+      const data = await response.json();
+      setQuestions(data);
+      setCurrentQuestionIndex(0);
+      setScore(0);
+      setIsFinished(false);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Something went wrong when fetching the questions.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   const currentQuestion = questions[currentQuestionIndex];
   const answerOptions = useMemo(
     () =>
@@ -21,26 +51,8 @@ function GamePage() {
   );
 
   useEffect(() => {
-    async function fetchQuestions() {
-      try {
-        const response = await fetch("http://localhost:5026/questions");
-
-        if (!response.ok) {
-          throw new Error("Could not fetch questions");
-        }
-
-        const data = await response.json();
-        setQuestions(data);
-      } catch (error) {
-        console.error(error);
-        setErrorMessage("Something went wrong when fetching the questions.");
-      } finally {
-        setLoading(false);
-      }
-    }
-
     fetchQuestions();
-  }, []);
+  }, [fetchQuestions]);
 
   function shuffleAnswers(answers) {
     const shuffledAnswers = [...answers];
@@ -71,6 +83,50 @@ function GamePage() {
     }
   }
 
+  async function handleSaveHighscore() {
+    const trimmedName = playerName.trim();
+
+    if (!trimmedName) {
+      setSaveError("Please enter a name before saving.");
+      return;
+    }
+
+    setIsSaving(true);
+    setSaveError("");
+    setSaveMessage("");
+
+    try {
+      const response = await fetch("http://localhost:5026/highscores", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: trimmedName,
+          score,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not save highscore");
+      }
+
+      setSaveMessage("Highscore saved!");
+    } catch (error) {
+      console.error(error);
+      setSaveError("Could not save the highscore right now.");
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  function handleRestartGame() {
+    setPlayerName("");
+    setSaveMessage("");
+    setSaveError("");
+    fetchQuestions();
+  }
+
   if (loading) {
     return (
       <main className={styles.container}>
@@ -99,10 +155,43 @@ function GamePage() {
   if (isFinished) {
     return (
       <main className={styles.container}>
-        <h1>Quiz finished!</h1>
-        <p>
-          You got {score} out of {questions.length} correct.
-        </p>
+        <div className={styles.card}>
+          <h1 className={styles.title}>Quiz finished!</h1>
+          <p className={styles.finishedText}>
+            You got {score} out of {questions.length} correct.
+          </p>
+          <div className={styles.saveBox}>
+            <label className={styles.nameLabel} htmlFor="playerName">
+              Name
+            </label>
+            <input
+              id="playerName"
+              className={styles.nameInput}
+              type="text"
+              value={playerName}
+              onChange={(event) => setPlayerName(event.target.value)}
+              placeholder="Write your name"
+              maxLength={20}
+            />
+
+            <button
+              className={styles.saveButton}
+              onClick={handleSaveHighscore}
+              disabled={isSaving}
+            >
+              {isSaving ? "Saving..." : "Save highscore"}
+            </button>
+
+            {saveMessage ? (
+              <p className={styles.saveMessage}>{saveMessage}</p>
+            ) : null}
+            {saveError ? <p className={styles.saveError}>{saveError}</p> : null}
+          </div>
+
+          <button className={styles.restartButton} onClick={handleRestartGame}>
+            New game
+          </button>
+        </div>
       </main>
     );
   }
@@ -111,7 +200,9 @@ function GamePage() {
     <main className={styles.container}>
       <div className={styles.card}>
         <div className={styles.headerRow}>
-          <span className={styles.badge}>Capital Quiz</span>
+          <Link to="/" className={styles.badgeLink}>
+            <span className={styles.badge}>Capital Quiz</span>
+          </Link>
           <p className={styles.questionCounter}>
             Question {currentQuestionIndex + 1} of {questions.length}
           </p>
