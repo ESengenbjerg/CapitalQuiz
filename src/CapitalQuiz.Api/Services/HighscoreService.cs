@@ -5,7 +5,10 @@ namespace CapitalQuiz.Api.Services;
 
 public class HighscoreService
 {
-    private readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "highscore.txt");
+    //private readonly string _filePath = Path.Combine(AppContext.BaseDirectory, "highscore.txt");
+    private readonly string _filePath = Path.Combine(Directory.GetCurrentDirectory(), "highscore.txt");
+
+
     public List<HighscoreEntry> Load()
     {
         
@@ -37,7 +40,17 @@ public class HighscoreService
             .Take(10)
             .ToList();
 
-        File.WriteAllLines(_filePath,
-            sorted.Select(s => $"{s.Name},{s.Score}"));
+        // Write to the project-level highscore.txt and handle IO errors so the server doesn't crash
+        try
+        {
+            File.WriteAllLines(_filePath, sorted.Select(s => $"{s.Name},{s.Score}"));
+            System.Console.WriteLine($"Wrote highscores to {_filePath} (count {sorted.Count})");
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine($"Could not write highscores to {_filePath}: {ex}");
+        }
+        //File.WriteAllLines(_filePath,
+        //    sorted.Select(s => $"{s.Name},{s.Score}"));
     }
 }
