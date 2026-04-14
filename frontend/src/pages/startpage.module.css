@@ -104,11 +104,23 @@
 .highscoreList li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   padding: 10px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.highscoreName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.highscoreScore {
+  flex-shrink: 0;
 }
 
 @media (min-width: 641px) {
@@ -127,10 +139,6 @@
   .highscoreList {
     margin-top: 10px;
     gap: 8px;
-  }
-
-  .highscoreList li:nth-child(n + 9) {
-    display: none;
   }
 
   .newGameButton {

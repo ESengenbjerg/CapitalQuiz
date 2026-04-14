@@ -37,7 +37,7 @@ public class HighscoreService
 
         var sorted = scores
             .OrderByDescending(s => s.Score)
-            .Take(10)
+            .Take(8)
             .ToList();
 
         // Write to the project-level highscore.txt and handle IO errors so the server doesn't crash

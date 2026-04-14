@@ -8,26 +8,6 @@ function StartPage() {
   const [scoresError, setScoresError] = useState("");
   const navigate = useNavigate();
 
-  function getUniqueHighscores(highscoreList) {
-    const highestScoresByName = new Map();
-
-    highscoreList.forEach((entry) => {
-      const normalizedName = entry.name.trim().toLowerCase();
-      const currentBestScore = highestScoresByName.get(normalizedName);
-
-      if (!currentBestScore || entry.score > currentBestScore.score) {
-        highestScoresByName.set(normalizedName, {
-          name: entry.name.trim(),
-          score: entry.score,
-        });
-      }
-    });
-
-    return Array.from(highestScoresByName.values()).sort(
-      (firstEntry, secondEntry) => secondEntry.score - firstEntry.score,
-    );
-  }
-
   useEffect(() => {
     async function fetchHighscores() {
       try {
@@ -41,7 +21,7 @@ function StartPage() {
         }
 
         const data = await response.json();
-        setScores(getUniqueHighscores(data));
+        setScores(data);
       } catch (error) {
         console.error(error);
         setScoresError("Could not load highscores.");
@@ -77,8 +57,8 @@ function StartPage() {
             <ol className={styles.highscoreList}>
               {scores.map((score) => (
                 <li key={score.name}>
-                  <span>{score.name}</span>
-                  <span>{score.score}</span>
+                  <span className={styles.highscoreName}>{score.name}</span>
+                  <span className={styles.highscoreScore}>{score.score}</span>
                 </li>
               ))}
             </ol>
