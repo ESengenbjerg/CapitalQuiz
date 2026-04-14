@@ -193,7 +193,182 @@ public static class CountryData
                 Country = "New Zealand",
                 CorrectCapital = "Wellington",
                 WrongCapitals = new List<string> { "Auckland", "Christchurch", "Hamilton" }
+            },
+            new CountryQuestion
+            {
+                Country = "South Korea",
+                CorrectCapital = "Seoul",
+                WrongCapitals = new List<string> { "Busan", "Incheon", "Daegu" }
+            },
+            new CountryQuestion
+            {
+                Country = "North Korea",
+                CorrectCapital = "Pyongyang",
+                WrongCapitals = new List<string> { "Hamhung", "Wonsan", "Kaesong" }
+            },
+            new CountryQuestion
+            {
+                Country = "India",
+                CorrectCapital = "New Delhi",
+                WrongCapitals = new List<string> { "Mumbai", "Bangalore", "Kolkata" }
+            },
+            new CountryQuestion
+            {
+                Country = "Pakistan",
+                CorrectCapital = "Islamabad",
+                WrongCapitals = new List<string> { "Karachi", "Lahore", "Rawalpindi" }
+            },
+            new CountryQuestion
+            {
+                Country = "Bangladesh",
+                CorrectCapital = "Dhaka",
+                WrongCapitals = new List<string> { "Chittagong", "Khulna", "Sylhet" }
+            },
+            new CountryQuestion
+            {
+                Country = "Sri Lanka",
+                CorrectCapital = "Sri Jayawardenepura Kotte",
+                WrongCapitals = new List<string> { "Colombo", "Galle", "Kandy" }
+            },
+            new CountryQuestion
+            {
+                Country = "Nepal",
+                CorrectCapital = "Kathmandu",
+                WrongCapitals = new List<string> { "Pokhara", "Lalitpur", "Biratnagar" }
+            },
+            new CountryQuestion
+            {
+                Country = "Thailand",
+                CorrectCapital = "Bangkok",
+                WrongCapitals = new List<string> { "Chiang Mai", "Phuket", "Pattaya" }
+            },
+            new CountryQuestion
+            {
+                Country = "Vietnam",
+                CorrectCapital = "Hanoi",
+                WrongCapitals = new List<string> { "Ho Chi Minh City", "Da Nang", "Hue" }
+            },
+            new CountryQuestion
+            {
+                Country = "Indonesia",
+                CorrectCapital = "Jakarta",
+                WrongCapitals = new List<string> { "Surabaya", "Bandung", "Medan" }
+            },
+            new CountryQuestion
+            {
+                Country = "Philippines",
+                CorrectCapital = "Manila",
+                WrongCapitals = new List<string> { "Cebu", "Davao", "Quezon City" }
+            },
+            new CountryQuestion
+            {
+                Country = "South Africa",
+                CorrectCapital = "Pretoria",
+                WrongCapitals = new List<string> { "Cape Town", "Johannesburg", "Durban" }
+            },
+            new CountryQuestion
+            {
+                Country = "Egypt",
+                CorrectCapital = "Cairo",
+                WrongCapitals = new List<string> { "Alexandria", "Giza", "Luxor" }
+            },
+            new CountryQuestion
+            {
+                Country = "Nigeria",
+                CorrectCapital = "Abuja",
+                WrongCapitals = new List<string> { "Lagos", "Kano", "Ibadan" }
+            },
+            new CountryQuestion
+            {
+                Country = "Kenya",
+                CorrectCapital = "Nairobi",
+                WrongCapitals = new List<string> { "Mombasa", "Kisumu", "Nakuru" }
+            },
+            new CountryQuestion
+            {
+                Country = "Ethiopia",
+                CorrectCapital = "Addis Ababa",
+                WrongCapitals = new List<string> { "Gondar", "Mekelle", "Dire Dawa" }
+            },
+            new CountryQuestion
+            {
+                Country = "Saudi Arabia",
+                CorrectCapital = "Riyadh",
+                WrongCapitals = new List<string> { "Jeddah", "Mecca", "Medina" }
+            },
+            new CountryQuestion
+            {
+                Country = "United Arab Emirates",
+                CorrectCapital = "Abu Dhabi",
+                WrongCapitals = new List<string> { "Dubai", "Sharjah", "Al Ain" }
+            },
+            new CountryQuestion
+            {
+                Country = "Iran",
+                CorrectCapital = "Tehran",
+                WrongCapitals = new List<string> { "Mashhad", "Isfahan", "Shiraz" }
+            },
+            new CountryQuestion
+            {
+                Country = "Israel",
+                CorrectCapital = "Jerusalem",
+                WrongCapitals = new List<string> { "Tel Aviv", "Haifa", "Eilat" }
+            },
+            new CountryQuestion
+            {
+                Country = "Chile",
+                CorrectCapital = "Santiago",
+                WrongCapitals = new List<string> { "Valparaíso", "Concepción", "Antofagasta" }
+            },
+            new CountryQuestion
+            {
+                Country = "Peru",
+                CorrectCapital = "Lima",
+                WrongCapitals = new List<string> { "Cusco", "Arequipa", "Trujillo" }
+            },
+            new CountryQuestion
+            {
+                Country = "Colombia",
+                CorrectCapital = "Bogotá",
+                WrongCapitals = new List<string> { "Medellín", "Cali", "Barranquilla" }
+            },
+            new CountryQuestion
+            {
+                Country = "Venezuela",
+                CorrectCapital = "Caracas",
+                WrongCapitals = new List<string> { "Maracaibo", "Valencia", "Barquisimeto" }
+            },
+            new CountryQuestion
+            {
+                Country = "South Sudan",
+                CorrectCapital = "Juba",
+                WrongCapitals = new List<string> { "Malakal", "Wau", "Bor" }
+            },
+            new CountryQuestion
+            {
+                Country = "Morocco",
+                CorrectCapital = "Rabat",
+                WrongCapitals = new List<string> { "Casablanca", "Marrakech", "Fes" }
+            },
+            new CountryQuestion
+            {
+                Country = "Algeria",
+                CorrectCapital = "Algiers",
+                WrongCapitals = new List<string> { "Oran", "Constantine", "Annaba" }
+            },
+            new CountryQuestion
+            {
+                Country = "Tunisia",
+                CorrectCapital = "Tunis",
+                WrongCapitals = new List<string> { "Sfax", "Sousse", "Bizerte" }
+            },
+            new CountryQuestion
+            {
+                Country = "Singapore",
+                CorrectCapital = "Singapore",
+                WrongCapitals = new List<string> { "Johor Bahru", "Kuala Lumpur", "Batam" }
             }
+
         };
     }
 }
