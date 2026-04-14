@@ -55,7 +55,6 @@
 }
 
 .newGameButton {
-  margin-top: 30px;
   align-self: center;
   padding: 14px 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -96,7 +95,8 @@
   list-style: none;
   padding: 0 0 10vh 0;
   margin: 16px 0 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   max-height: 50vh;
   height: 50vh;
@@ -113,7 +113,6 @@
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 10vh;
 }
 
 .highscoreName {
@@ -156,13 +155,13 @@
   .highscoreList {
     margin-top: 10px;
     gap: 8px;
-    /* max-height: 50vh;
-    height: 50vh; */
+    /* max-height: 40vh;
+    height: 40vh; */
   }
 
-  .newGameButton {
+  /* .newGameButton {
     margin-top: 16px;
-  }
+  } */
 }
 
 @media (max-width: 640px) {
