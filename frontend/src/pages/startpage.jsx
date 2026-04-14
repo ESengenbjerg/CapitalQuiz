@@ -34,7 +34,9 @@ function StartPage() {
         setLoadingScores(true);
         setScoresError("");
 
-        const response = await fetch("/highscores");
+        const response = await fetch(
+          "https://capitalquizbackend.onrender.com/highscores",
+        );
 
         if (!response.ok) {
           throw new Error("Could not fetch highscores");

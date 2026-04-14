@@ -21,7 +21,9 @@ function GamePage() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("http://localhost:5026/questions");
+      const response = await fetch(
+        "https://capitalquizbackend.onrender.com/questions",
+      );
 
       if (!response.ok) {
         throw new Error("Could not fetch questions");
@@ -112,16 +114,19 @@ function GamePage() {
     setSaveMessage("");
 
     try {
-      const response = await fetch("http://localhost:5026/highscores", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://capitalquizbackend.onrender.com/highscores",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: trimmedName,
+            score,
+          }),
         },
-        body: JSON.stringify({
-          name: trimmedName,
-          score,
-        }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Could not save highscore");
