@@ -120,13 +120,6 @@ function GamePage() {
     }
   }
 
-  function handleRestartGame() {
-    setPlayerName("");
-    setSaveMessage("");
-    setSaveError("");
-    fetchQuestions();
-  }
-
   if (loading) {
     return (
       <main className={styles.container}>
@@ -188,9 +181,9 @@ function GamePage() {
             {saveError ? <p className={styles.saveError}>{saveError}</p> : null}
           </div>
 
-          <button className={styles.restartButton} onClick={handleRestartGame}>
-            New game
-          </button>
+          <Link to="/" className={styles.restartButton}>
+            Back to start
+          </Link>
         </div>
       </main>
     );

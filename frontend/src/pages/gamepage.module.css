@@ -222,6 +222,7 @@
     box-shadow 160ms ease,
     border-color 160ms ease;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  text-decoration: none;
 }
 
 .restartButton:hover {
