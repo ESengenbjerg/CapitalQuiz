@@ -20,21 +20,20 @@ function StartPage() {
     <main className={styles.container}>
       <h1>Welcome to the Capital Quiz!</h1>
 
-        {/* This page only needs to redirect to gamepage. Backend starts the actual game logic */}
-        <button onClick={handleNewGame}>New game</button>
+      {/* This page only needs to redirect to gamepage. Backend starts the actual game logic */}
+      <button onClick={handleNewGame}>New game</button>
 
-        <section>
-          <h2>Highscores</h2>
-          <ol>
-            {scores.map((score, i) => (
-              <li key={i}>
-                {score.name}: {score.score}
-              </li>
-            ))}
-          </ol>
-        </section>
-      </main>
-    </>
+      <section>
+        <h2>Highscores</h2>
+        <ol>
+          {scores.map((score, i) => (
+            <li key={i}>
+              {score.name}: {score.score}
+            </li>
+          ))}
+        </ol>
+      </section>
+    </main>
   );
 }
 
