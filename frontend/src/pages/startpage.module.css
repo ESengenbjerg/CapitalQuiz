@@ -98,7 +98,8 @@
   margin: 16px 0 0;
   display: grid;
   gap: 10px;
-  max-height: 60vh;
+  max-height: 50vh;
+  height: 50vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -130,7 +131,7 @@
   height: 10vh;
   border: 1px solid white;
   position: fixed;
-  bottom: 0;
+  bottom: -10vh;
   left: 0;
   background-color: black;
   display: flex;
@@ -154,7 +155,8 @@
   .highscoreList {
     margin-top: 10px;
     gap: 8px;
-    max-height: 60vh;
+    max-height: 50vh;
+    height: 50vh;
   }
 
   .newGameButton {
