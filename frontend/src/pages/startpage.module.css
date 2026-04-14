@@ -139,7 +139,7 @@
   align-items: center;
 }
 
-@media (min-width: 641px) {
+/* @media (min-width: 641px) {
   .container {
     padding: 20px;
   }
@@ -155,14 +155,8 @@
   .highscoreList {
     margin-top: 10px;
     gap: 8px;
-    /* max-height: 40vh;
-    height: 40vh; */
   }
-
-  /* .newGameButton {
-    margin-top: 16px;
-  } */
-}
+} */
 
 @media (max-width: 640px) {
   .card {
