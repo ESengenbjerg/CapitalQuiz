@@ -13,6 +13,8 @@ function GamePage() {
   const [saveMessage, setSaveMessage] = useState("");
   const [saveError, setSaveError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [isAnswerLocked, setIsAnswerLocked] = useState(false);
 
   const fetchQuestions = useCallback(async () => {
     setLoading(true);
@@ -30,6 +32,8 @@ function GamePage() {
       setCurrentQuestionIndex(0);
       setScore(0);
       setIsFinished(false);
+      setSelectedAnswer("");
+      setIsAnswerLocked(false);
     } catch (error) {
       console.error(error);
       setErrorMessage("Something went wrong when fetching the questions.");
@@ -68,19 +72,31 @@ function GamePage() {
   }
 
   function handleAnswerClick(selectedAnswer) {
-    const currentQuestion = questions[currentQuestionIndex];
+    if (isAnswerLocked) {
+      return;
+    }
 
-    if (selectedAnswer === currentQuestion.correctCapital) {
+    const currentQuestion = questions[currentQuestionIndex];
+    const isCorrectAnswer = selectedAnswer === currentQuestion.correctCapital;
+    const nextQuestionIndex = currentQuestionIndex + 1;
+
+    setSelectedAnswer(selectedAnswer);
+    setIsAnswerLocked(true);
+
+    if (isCorrectAnswer) {
       setScore((previousScore) => previousScore + 1);
     }
 
-    const nextQuestionIndex = currentQuestionIndex + 1;
+    window.setTimeout(() => {
+      setSelectedAnswer("");
+      setIsAnswerLocked(false);
 
-    if (nextQuestionIndex < questions.length) {
-      setCurrentQuestionIndex(nextQuestionIndex);
-    } else {
-      setIsFinished(true);
-    }
+      if (nextQuestionIndex < questions.length) {
+        setCurrentQuestionIndex(nextQuestionIndex);
+      } else {
+        setIsFinished(true);
+      }
+    }, 650);
   }
 
   async function handleSaveHighscore() {
@@ -202,15 +218,23 @@ function GamePage() {
         </div>
 
         <h1 className={styles.title}>
-          What is the capital of {currentQuestion.country}?
+          <span>What is the capital of:</span>
+          <span className={styles.countryName}>{currentQuestion.country}?</span>
         </h1>
 
         <div className={styles.answersContainer}>
           {answerOptions.map((answer) => (
             <button
               key={answer}
-              className={styles.answerButton}
+              className={`${styles.answerButton} ${
+                selectedAnswer === answer
+                  ? answer === currentQuestion.correctCapital
+                    ? styles.answerButtonCorrect
+                    : styles.answerButtonWrong
+                  : ""
+              }`}
               onClick={() => handleAnswerClick(answer)}
+              disabled={isAnswerLocked}
             >
               {answer}
             </button>
