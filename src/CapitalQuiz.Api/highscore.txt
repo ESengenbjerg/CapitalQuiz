@@ -4,3 +4,5 @@ Maud,6
 Alexis,5
 Jannis,4
 TESTAR!,3
+<script>alert`1`,3
+"><script>alert(1),1
