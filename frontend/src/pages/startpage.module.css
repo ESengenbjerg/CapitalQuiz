@@ -82,7 +82,7 @@
 }
 
 .highscoreSection {
-  margin-top: 28px;
+  margin-top: 16px;
   text-align: left;
   position: relative;
 }
@@ -94,10 +94,10 @@
 .highscoreList {
   list-style: none;
   padding: 0 0 10vh 0;
-  margin: 16px 0 0;
+  margin: 16px 0 0 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   max-height: 50vh;
   height: 50vh;
   overflow-y: auto;
