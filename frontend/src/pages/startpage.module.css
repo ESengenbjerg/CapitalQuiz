@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .container {
   position: relative;
   height: 100vh;
@@ -55,7 +59,6 @@
 }
 
 .newGameButton {
-  margin-top: 30px;
   align-self: center;
   padding: 14px 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -83,7 +86,7 @@
 }
 
 .highscoreSection {
-  margin-top: 28px;
+  margin-top: 16px;
   text-align: left;
   position: relative;
 }
@@ -94,11 +97,13 @@
 
 .highscoreList {
   list-style: none;
-  padding: 0;
-  margin: 16px 0 0;
-  display: grid;
-  gap: 10px;
-  max-height: 40vh;
+  padding: 0 0 10vh 0;
+  margin: 16px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 50vh;
+  height: 50vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -128,34 +133,14 @@
 .fixedContainer {
   width: 100%;
   height: 10vh;
-  border: 1px solid white;
+  border: 1px solid lightgray;
   position: fixed;
-  bottom: 10%;
+  bottom: 0;
   left: 0;
-}
-
-@media (min-width: 641px) {
-  .container {
-    padding: 20px;
-  }
-
-  .pageHeader {
-    margin-bottom: 12px;
-  }
-
-  .highscoreSection {
-    margin-top: 16px;
-  }
-
-  .highscoreList {
-    margin-top: 10px;
-    gap: 8px;
-    max-height: 40vh;
-  }
-
-  .newGameButton {
-    margin-top: 16px;
-  }
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 640px) {
